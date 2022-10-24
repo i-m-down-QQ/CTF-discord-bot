@@ -1,30 +1,22 @@
-from discord.ext import commands 
-import discord
+import nextcord
+from nextcord.ext import commands
 import os
 
 TOKEN = os.getenv('BOT_TOKEN')
 assert TOKEN is not None, "TOKEN disappeared!!"
 
-intents = discord.Intents.default()
+intents = nextcord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix='>', intents=intents)
+help_cmd = commands.DefaultHelpCommand(show_parameter_descriptions=True)
+bot = commands.Bot(intents=intents, help_command=help_cmd)
 
-@bot.command()
-async def pingg(ctx):
-	"""Ping test."""
-	await ctx.send('pongg')
+@bot.event
+async def on_ready():
+	print(f"Logged in as {bot.user}.")
 
-@bot.command()
-async def sayhi(ctx, who: str):
-	"""Say hi to sb."""
-	await ctx.send(f'hi {who}')
+if __name__ == "__main__":
+	cogs = ["MyCog"]
+	for cog in cogs:
+		bot.load_extension(f"cogs.{cog}")
 
-@bot.command()
-async def gg(ctx, who: str):
-	"""Say hi to sb."""
-	await ctx.send(f'gg {who}')
-
-bot.run(TOKEN)
-
-# async def setup(bot: commands.Bot) -> None:
-# 	await bot.add_cog(MyCog(bot))
+	bot.run(TOKEN)
