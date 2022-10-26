@@ -3,6 +3,7 @@ from nextcord.ext import commands
 
 from ..secret import GUILD_ID
 
+
 class MyCog(commands.Cog):
 	def __init__(self, bot: commands.Bot) -> None:
 		self.bot = bot
