@@ -1,10 +1,11 @@
+from pydoc import describe
 import time
 
 import requests
 import nextcord
 from nextcord.ext import commands
 
-from ..params import GUILD_ID, USER_AGENT
+from ..params import GUILD_ID, USER_AGENT, DESCRIPTIONS
 
 
 class Util(commands.Cog):
@@ -36,7 +37,10 @@ class Util(commands.Cog):
 		"""
 		Help
 		"""
-		await interaction.response.send_message("Not finished")
+		embed = nextcord.Embed(title = "Help")
+		embed.add_field(name="Util", value=DESCRIPTIONS["util"], inline=False)
+		embed.add_field(name="CTF", value=DESCRIPTIONS["ctf"], inline=False)
+		await interaction.response.send_message(embed=embed)
 	
 	@nextcord.slash_command(guild_ids=[GUILD_ID])
 	async def sync(self, interaction: nextcord.Interaction) -> None:
