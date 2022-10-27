@@ -6,14 +6,15 @@ from bs4 import BeautifulSoup
 import nextcord
 from nextcord.ext import commands
 
-from ..params import GUILD_ID, USER_AGENT
+from ..params import USER_AGENT
 from ..utility import parseCTFEvent, createEmbed
+
 
 class CTF(commands.Cog):
 	def __init__(self, bot: commands.Bot) -> None:
 		self.bot = bot
 
-	@nextcord.slash_command(guild_ids=[GUILD_ID])
+	@nextcord.slash_command()
 	async def ctf(interaction: nextcord.Interaction):
 		"""
 		This is the main slash command that will be the prefix of all commands below.
@@ -59,6 +60,10 @@ class CTF(commands.Cog):
 			id = int(data.find("a").get("href").split('/')[2])
 			ctf_ids.append(id)
 		
+		# ctftime API response is too long for discord interaction ==
+		# so needs to defer the response
+		await interaction.response.defer()
+		
 		embeds = []
 		for id in ctf_ids:
 			res = requests.get(
@@ -70,7 +75,10 @@ class CTF(commands.Cog):
 			embed = createEmbed(ctfEvent, is_running=True)
 			embeds.append(embed)
 		
-		await interaction.response.send_message(embeds=embeds)
+		if (len(embeds) > 0):
+			await interaction.edit_original_message(embeds=embeds)
+		else:
+			await interaction.edit_original_message("No running CTFs")
 
 def setup(bot: commands.Bot) -> None:
 	bot.add_cog(CTF(bot))

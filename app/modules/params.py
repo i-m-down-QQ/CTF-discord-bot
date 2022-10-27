@@ -1,5 +1,6 @@
 import os
 
+
 TOKEN = os.getenv('BOT_TOKEN')
 assert TOKEN is not None, "TOKEN disappeared!!"
 
