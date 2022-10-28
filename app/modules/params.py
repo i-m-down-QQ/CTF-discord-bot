@@ -15,7 +15,7 @@ DESCRIPTIONS = {
     "util": 
     """
     `/help`
-    ➜ Show help menu.
+    ➜ Show help menu
     `/ping`
     ➜ Test bot is alive and get its latency
     `/ping_ctftime`
