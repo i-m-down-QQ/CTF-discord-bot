@@ -1,6 +1,19 @@
 # CTF discord bot
 
-[toc]
+<!-- TOC -->
+
+- [CTF discord bot](#ctf-discord-bot)
+    - [Installation](#installation)
+    - [Usage](#usage)
+        - [Util](#util)
+        - [CTF](#ctf)
+    - [Contect](#contect)
+
+<!-- /TOC -->
+
+<!-- Existed bot invite link: https://discord.com/api/oauth2/authorize?client_id=1031857604177178634&permissions=274877991936&scope=bot -->
+
+---
 
 ## Installation
 1. Enroll a discord bot on [discord developer protal](https://discord.com/developers/applications/)
