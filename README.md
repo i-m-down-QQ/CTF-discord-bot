@@ -17,19 +17,24 @@
 
 ## Installation
 1. Enroll a discord bot on [discord developer protal](https://discord.com/developers/applications/)
-2. Generate env file from template
+2. Install docker (if not installed)
+    ```bash
+    chmod +x installdocker.sh
+    ./installdocker.sh
+    ```
+3. Generate env file from template
     ```bash
     cp .env.template .env
 
     # modify BOT_TOKEN and GUILD_ID
     vi .env
     ```
-3. run docker
+4. run docker
     ```bash
     chmod +x rundocker.sh
     ./rundocker.sh
     ```
-4. run `/sync` command on your testing server
+5. run `/sync` command on your testing server
 
 ## Usage
 ### Util
