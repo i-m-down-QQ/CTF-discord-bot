@@ -16,11 +16,13 @@
 ---
 
 ## Installation
-1. Enroll a discord bot on [discord developer protal](https://discord.com/developers/applications/)
+1. Enroll a discord bot on [discord developer portal](https://discord.com/developers/applications/)
 2. Install docker (if not installed)
     ```bash
     chmod +x installdocker.sh
     ./installdocker.sh
+    
+    # logout then login
     ```
 3. Generate env file from template
     ```bash
@@ -64,6 +66,6 @@ Fetch upcoming events from CTFtime
 Fetch nowrunning events from CTFtime
 
 ## Contect
-If there is any problem, feel free to contect us.
+If there is any problem, feel free to contect us or using the issue/PR.
 
 Email: iamdownqq@gmail.com
