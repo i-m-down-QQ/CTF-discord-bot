@@ -21,7 +21,7 @@ class CTFEvent():
 		self.startTime = datetime.utcfromtimestamp(0)
 		self.endTime = datetime.utcfromtimestamp(0)
 		self.duration = timedelta(seconds=0)
-		self.weight = -1
+		self.weight = 0.0
 		self.is_votable_now = False
 		self.public_votable = False
 
@@ -44,7 +44,7 @@ def parseCTFEvent(ctfData: dict) -> CTFEvent:
 	event.startTime = datetime.fromisoformat(ctfData["start"])
 	event.endTime = datetime.fromisoformat(ctfData["finish"])
 	event.duration = timedelta(days=ctfData['duration']['days'], hours=ctfData['duration']['hours'])
-	event.weight = int(ctfData["weight"])
+	event.weight = float(ctfData["weight"])
 	event.is_votable_now = bool(ctfData["is_votable_now"])
 	event.public_votable = bool(ctfData["public_votable"])
 	return event
@@ -62,7 +62,7 @@ def createEmbed(event: CTFEvent, is_running=False) -> nextcord.Embed:
 	embed.add_field(name="Origanizers", value=", ".join(event.organizers), inline=True)
 	embed.add_field(name="Location", value=event.location, inline=True)
 	embed.add_field(name="Format", value=event.format, inline=True)
-	embed.add_field(name="Weight", value=str(event.weight), inline=True)
+	embed.add_field(name="Weight", value=f"{event.weight: .2f}", inline=True)
 	if(is_running):
 		now = datetime.now(tz=event.endTime.tzinfo)
 		endTime = event.endTime
